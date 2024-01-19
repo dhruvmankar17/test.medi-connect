@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Sign Up - MediConnect</title>
+    <style>
+        body {
+            background-color: #e0f7fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background-color: #81d4fa;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 325px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #333;
+            color: #81d4fa;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="signup-container">
+        <h2>Sign Up for MediConnect</h2>
+    
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Fullname" required>
+    
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="abc123@medi.com" required>
+    
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Username" required>
+    
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="**********" required>
+    
+        <button type="submit" id = "signup" name = "signup" value = "Sign Up">Sign Up</button>
+    
+        <p class="login-link"><a href="LoginPage.html"><span style = "color: #000000;">Already have an account?</span></a></p>
+    </div>
+
+</body>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyANRVmOt1wfq1sJ4ghgcsgEBxYZTU3Zmwc",
+        authDomain: "mediconnect-b5b90.firebaseapp.com",
+        databaseURL: "https://mediconnect-b5b90-default-rtdb.firebaseio.com",
+        projectId: "mediconnect-b5b90",
+        storageBucket: "mediconnect-b5b90.appspot.com",
+        messagingSenderId: "234155101917",
+        appId: "1:234155101917:web:39b9066d6a93a2dbc2d534"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const auth = getAuth();
+
+        signup.addEventListener('click', (e) =>
+        {
+            var fullname = document.getElementById('fullname').value;
+            var email = document.getElementById('email').value;
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    set (ref(database, 'user/' + user.uid),
+                    {
+                        email: email,                        
+                        fullname: fullname,
+                        username: username
+                    })
+                    alert('Account Created Succesfully !!!')
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+
+                    alert(errorMessage);
+                });
+        })
+
+    </script>
+
+</html>
+
+
+
+
+

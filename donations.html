@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediConnect - Donate Medicine</title>
+    <style>
+        body {
+            background-color: #e0f7fa; /* Light blue background color */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #4CAF50; /* Green color for donate */
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        label {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green color for donate */
+            color: white;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>MediConnect - Donate Medicine</h1>
+
+    <form id="donateForm">
+        <label for="medicineName">Medicine Name:</label>
+        <input type="text" id="medicineName" name="medicineName" required>
+    
+        <label for="mfdDate">Manufacturing Date:</label>
+        <input type="date" id="mfdDate" name="mfdDate" required>
+    
+        <label for="expireDate">Expiry Date:</label>
+        <input type="date" id="expireDate" name="expireDate" required>
+    
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required>
+    
+        <label for="companyName">Company Name:</label>
+        <input type="text" id="companyName" name="companyName" required>
+    
+        <label for="uses">Uses (Optional):</label>
+        <textarea id="uses" name="uses"></textarea>
+    
+        <!-- Add an input for file upload if you want to allow users to upload a photo -->
+        
+        <button type="button" id="submit" name="submit">Donate Medicine</button>
+    </form>
+    
+</body>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, setDoc, addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyANRVmOt1wfq1sJ4ghgcsgEBxYZTU3Zmwc",
+    authDomain: "mediconnect-b5b90.firebaseapp.com",
+    databaseURL: "https://mediconnect-b5b90-default-rtdb.firebaseio.com",
+    projectId: "mediconnect-b5b90",
+    storageBucket: "mediconnect-b5b90.appspot.com",
+    messagingSenderId: "234155101917",
+    appId: "1:234155101917:web:39b9066d6a93a2dbc2d534"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
+
+    submit.addEventListener("click", (e) => {
+
+            var medicineName = document.getElementById("medicineName").value
+            var mfdDate = document.getElementById("mfdDate").value
+            var expireDate = document.getElementById("expireDate").value
+            var quantity = parseInt(document.getElementById("quantity").value)
+            var companyName = document.getElementById("companyName").value
+            var uses = document.getElementById("uses").value
+
+        const docRef = addDoc(collection(db, "Medicines"), {
+            medicineName: medicineName,
+            mfdDate: mfdDate,
+            expireDate: expireDate,
+            quantity: quantity,
+            companyName: companyName,
+            uses: uses
+        });
+
+                alert("Medicine donation submitted successfully!");
+
+               // alert("Error submitting medicine donation. Please try again.");
+           
+});
+</script>
+
+
+</html>

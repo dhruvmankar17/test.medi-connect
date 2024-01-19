@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediConnect - Donate or Receive Medicine</title>
+    <style>
+        body {
+            background-color: #e0f7fa; /* Light blue background color */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #2196F3; /* Material Blue color */
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .action-button {
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .donate-button {
+            background-color: #4CAF50; /* Green color for donate */
+            color: white;
+        }
+
+        .receive-button {
+            background-color: #FF5722; /* Orange color for receive */
+            color: white;
+        }
+
+        .action-button:hover {
+            background-color: rgba(0, 0, 0, 0.1); /* Light shading on hover */
+            transform: translateY(-5px); /* Move button up on hover */
+        }
+
+        .quote-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>MediConnect - Donate or Receive Medicine</h1>
+
+    <div class="button-container">
+        <button class="action-button donate-button"><a href="donations.html">Donate Medicine</a></button>
+        <button class="action-button receive-button"><a href="Medicines.html">Receive Medicine</a></button>
+    </div>
+
+    <div class="quote-container">
+        <p>Donating medicine is a powerful act that helps combat the critical issue of medicine wastage.</p>
+        <p>Receiving donated medicine ensures that every individual has access to the care they deserve.</p>
+    </div>
+</body>
+
+</html>
